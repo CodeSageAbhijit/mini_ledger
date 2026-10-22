@@ -3,15 +3,11 @@ import { ConsoleOtpSender } from './ConsoleOtpSender';
 import { FallbackOtpSender } from './FallbackOtpSender';
 import type { OtpSender } from './OtpSender';
 import { SmsOtpSender } from './SmsOtpSender';
-import { WhatsAppOtpSender } from './WhatsAppOtpSender';
 
 export function createOtpSender(config: Config): OtpSender {
   let primary: OtpSender;
 
   switch (config.OTP_CHANNEL) {
-    case 'whatsapp':
-      primary = new WhatsAppOtpSender(config.whatsapp);
-      break;
     case 'sms':
       primary = new SmsOtpSender();
       break;

@@ -89,7 +89,7 @@ export const OtpScreen: React.FC = () => {
         <View style={styles.card}>
           <Text style={styles.title}>Enter verification code</Text>
           <Text style={styles.subtitle}>
-            A 6-digit code has been sent via WhatsApp to{' '}
+            A 6-digit code has been sent to{' '}
             <Text style={styles.phoneHighlight}>{phone}</Text>
           </Text>
 
@@ -121,7 +121,7 @@ export const OtpScreen: React.FC = () => {
           <View style={styles.footerRow}>
             <Button
               title={
-                cooldown > 0 ? `Resend code in ${cooldown}s` : 'Resend Code via WhatsApp'
+                cooldown > 0 ? `Resend code in ${cooldown}s` : 'Resend Code'
               }
               variant="ghost"
               onPress={handleResend}

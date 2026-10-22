@@ -2,7 +2,7 @@ import { logger } from '../../../common/logger';
 import type { OtpSender, OtpMessage, OtpChannelName } from './OtpSender';
 
 /**
- * Decorator pattern: wraps a primary sender (e.g. WhatsApp) and falls back
+ * Decorator pattern: wraps a primary sender (e.g. SMS) and falls back
  * to a secondary sender (e.g. Console) if the primary fails.
  */
 export class FallbackOtpSender implements OtpSender {

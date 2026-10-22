@@ -31,3 +31,7 @@ This document records architectural, design, and technical decisions made during
 ### ADR-007: WhatsApp Cloud API Credentials
 - **Decision:** Configure live Meta WhatsApp Cloud API credentials in `.env` with fallback enabled for resilience.
 - **Rationale:** Delivers live OTP authentication messages to verified test phone numbers using Meta's Cloud API authentication template.
+
+### ADR-008: Simplification to Console OTP as Primary Provider
+- **Decision:** Remove WhatsApp Cloud API dependency and configure `ConsoleOtpSender` as the primary active OTP channel (`OTP_CHANNEL=console`).
+- **Rationale:** Eliminates external Meta account registration and token expiration overhead. Preserves the clean `OtpSender` interface and factory pattern, allowing zero-friction future integration with any external provider (e.g. Twilio, MSG91, AWS SNS) simply by implementing `OtpSender`.

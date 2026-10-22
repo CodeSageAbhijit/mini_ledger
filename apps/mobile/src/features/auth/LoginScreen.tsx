@@ -41,7 +41,7 @@ export const LoginScreen: React.FC = () => {
         resendAfterSeconds: res.resendAfterSeconds,
       });
     } catch (err) {
-      setError(extractErrorMessage(err, 'Failed to send WhatsApp verification code.'));
+      setError(extractErrorMessage(err, 'Failed to send verification code.'));
     } finally {
       setLoading(false);
     }
@@ -66,7 +66,7 @@ export const LoginScreen: React.FC = () => {
         <View style={styles.card}>
           <Text style={styles.cardHeader}>Log in or Sign up</Text>
           <Text style={styles.cardSubtext}>
-            We will send a 6-digit verification code to your WhatsApp.
+            We will send a 6-digit verification code to your phone.
           </Text>
 
           <Input
@@ -88,14 +88,14 @@ export const LoginScreen: React.FC = () => {
           />
 
           <Button
-            title="Send Code on WhatsApp"
+            title="Send Verification Code"
             onPress={handleRequestOtp}
             loading={loading}
             style={styles.submitBtn}
           />
 
           <Text style={styles.securityNote}>
-            🔒 Secured with WhatsApp Cloud API OTP authentication
+            🔒 Secured with HMAC-SHA256 OTP authentication
           </Text>
         </View>
       </View>

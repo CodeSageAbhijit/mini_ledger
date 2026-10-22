@@ -14,7 +14,7 @@ describe('FallbackOtpSender (Unit)', () => {
     const primarySend = vi.fn().mockResolvedValue(undefined);
     const fallbackSend = vi.fn().mockResolvedValue(undefined);
 
-    const primary: OtpSender = { channel: 'WHATSAPP', send: primarySend };
+    const primary: OtpSender = { channel: 'SMS', send: primarySend };
     const fallback: OtpSender = { channel: 'CONSOLE', send: fallbackSend };
 
     const sender = new FallbackOtpSender(primary, fallback);
@@ -28,7 +28,7 @@ describe('FallbackOtpSender (Unit)', () => {
     const primarySend = vi.fn().mockRejectedValue(new OtpDeliveryError('API timeout'));
     const fallbackSend = vi.fn().mockResolvedValue(undefined);
 
-    const primary: OtpSender = { channel: 'WHATSAPP', send: primarySend };
+    const primary: OtpSender = { channel: 'SMS', send: primarySend };
     const fallback: OtpSender = { channel: 'CONSOLE', send: fallbackSend };
 
     const sender = new FallbackOtpSender(primary, fallback);

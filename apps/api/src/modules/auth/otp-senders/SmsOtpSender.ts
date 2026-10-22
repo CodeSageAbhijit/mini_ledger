@@ -9,7 +9,7 @@ export class SmsOtpSender implements OtpSender {
     throw new AppError(
       'NOT_IMPLEMENTED',
       501,
-      'SMS delivery provider is not configured. Configure MSG91 / Twilio in SmsOtpSender or use WhatsApp / Console.',
+      'SMS delivery provider is not configured. Configure MSG91 / Twilio in SmsOtpSender or set OTP_CHANNEL=console.',
     );
   }
 }

@@ -8,7 +8,7 @@ All responses are JSON. Monetary values are strictly in **integer paise** (₹1 
 
 ## 1. Public Authentication Endpoints
 
-### 1.1 Request WhatsApp OTP
+### 1.1 Request OTP
 `POST /auth/otp/request`
 
 Sends a 6-digit verification code to the specified phone number.
