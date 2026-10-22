@@ -8,7 +8,7 @@ async function bootstrap() {
   const container = buildContainer();
   const app = createApp(container);
 
-  const server = app.listen(config.PORT, () => {
+  const server = app.listen(config.PORT, '0.0.0.0', () => {
     logger.info(
       {
         port: config.PORT,
@@ -16,7 +16,7 @@ async function bootstrap() {
         otpChannel: config.OTP_CHANNEL,
         timezone: config.APP_TIMEZONE,
       },
-      `🚀 MiniLedger API server running at http://localhost:${config.PORT}`,
+      `🚀 MiniLedger API server running at http://0.0.0.0:${config.PORT}`,
     );
   });
 

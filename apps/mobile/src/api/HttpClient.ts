@@ -1,10 +1,29 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { Platform } from 'react-native';
+import Constants from 'expo-constants';
 import { useAuthStore } from '../store/authStore';
 
-// Android emulator maps 10.0.2.2 to host machine's localhost; iOS simulator uses localhost
-const DEFAULT_HOST = Platform.OS === 'android' ? 'http://10.0.2.2:4000' : 'http://localhost:4000';
-export const BASE_API_URL = process.env.EXPO_PUBLIC_API_URL || `${DEFAULT_HOST}/api/v1`;
+function resolveBaseUrl(): string {
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL;
+  }
+
+  // When running via Expo Go (physical device or emulator), hostUri contains the IP of the dev machine
+  // e.g. "192.168.0.118:8081"
+  const hostUri = Constants.expoConfig?.hostUri;
+  if (hostUri) {
+    const hostIp = hostUri.split(':')[0];
+    if (hostIp) {
+      return `http://${hostIp}:4000/api/v1`;
+    }
+  }
+
+  // Fallback for standalone/emulator
+  const fallbackHost = Platform.OS === 'android' ? 'http://10.0.2.2:4000' : 'http://localhost:4000';
+  return `${fallbackHost}/api/v1`;
+}
+
+export const BASE_API_URL = resolveBaseUrl();
 
 export const httpClient = axios.create({
   baseURL: BASE_API_URL,
