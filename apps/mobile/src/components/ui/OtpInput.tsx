@@ -162,9 +162,9 @@ const styles = StyleSheet.create({
     width: 48,
     height: 56,
     borderRadius: radius.md,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surface,
     borderWidth: 1.5,
-    borderColor: colors.surfaceBorder,
+    borderColor: 'rgba(0, 0, 0, 0.08)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
     ...shadows.glowPrimary,
   },
   boxFilled: {
-    borderColor: colors.accent,
-    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.primary,
+    backgroundColor: colors.surface,
   },
   boxError: {
     borderColor: colors.danger,

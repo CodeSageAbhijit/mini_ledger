@@ -3,11 +3,11 @@ import {
   FlatList,
   Pressable,
   RefreshControl,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import * as Haptics from 'expo-haptics';
 import { LoanResponse } from '@miniledger/shared';
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: radius.full,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
     borderWidth: 1,
     borderColor: colors.surfaceBorder,
   },

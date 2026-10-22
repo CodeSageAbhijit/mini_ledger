@@ -64,6 +64,6 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
 const styles = StyleSheet.create({
   skeleton: {
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: 'rgba(0, 0, 0, 0.08)',
   },
 });

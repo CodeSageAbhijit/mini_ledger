@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   overdueBadge: {
-    backgroundColor: 'rgba(255, 92, 122, 0.2)',
+    backgroundColor: 'rgba(255, 59, 48, 0.10)',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: radius.full,
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   pendingBadge: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: radius.full,
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   repaidBadge: {
-    backgroundColor: 'rgba(46, 230, 166, 0.2)',
+    backgroundColor: 'rgba(52, 199, 89, 0.12)',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: radius.full,

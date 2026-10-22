@@ -1,28 +1,33 @@
 export const colors = {
-  bg: '#0B0F1A',
-  surface: '#141A2B',
-  surfaceElevated: '#1C2440',
-  surfaceBorder: 'rgba(255, 255, 255, 0.08)',
-  surfaceHighlight: 'rgba(255, 255, 255, 0.04)',
+  bg: '#F6F8FA', // Apple Music light background canvas
+  surface: '#FFFFFF', // Pure white liquid cards
+  surfaceElevated: '#FFFFFF',
+  surfaceBorder: 'rgba(0, 0, 0, 0.06)', // Razor-thin iOS hairline border
+  surfaceHighlight: 'rgba(255, 255, 255, 0.95)',
+  surfaceGlass: 'rgba(255, 255, 255, 0.85)', // Frosted acrylic glass
 
-  primary: '#7C5CFF', // Violet
-  primaryLight: '#9A82FF',
-  primaryGlow: 'rgba(124, 92, 255, 0.35)',
+  primary: '#FA233B', // Signature Apple Music Crimson/Pink
+  primaryLight: '#FF4D62',
+  primaryGlow: 'rgba(250, 35, 59, 0.25)',
+  primarySoft: 'rgba(250, 35, 59, 0.08)',
 
-  accent: '#2EE6A6', // Mint (repaid / positive)
-  accentLight: '#63F5C3',
-  accentGlow: 'rgba(46, 230, 166, 0.25)',
+  accent: '#34C759', // Apple iOS Green (repaid / positive)
+  accentLight: '#30D158',
+  accentGlow: 'rgba(52, 199, 89, 0.22)',
+  accentSoft: 'rgba(52, 199, 89, 0.10)',
 
-  danger: '#FF5C7A', // Coral (overdue)
-  dangerLight: '#FF8A5C',
-  dangerGlow: 'rgba(255, 92, 122, 0.35)',
+  danger: '#FF3B30', // Apple iOS Red (overdue)
+  dangerLight: '#FF6961',
+  dangerGlow: 'rgba(255, 59, 48, 0.24)',
+  dangerSoft: 'rgba(255, 59, 48, 0.08)',
 
-  warning: '#FFB547', // Amber (due soon <= 3 days)
-  warningGlow: 'rgba(255, 181, 71, 0.25)',
+  warning: '#FF9500', // Apple Amber
+  warningGlow: 'rgba(255, 149, 0, 0.20)',
+  warningSoft: 'rgba(255, 149, 0, 0.10)',
 
-  text: '#F2F5FF',
-  textMuted: '#8A93B2',
-  textDim: '#5A627D',
+  text: '#1C1C1E', // Apple SF Pro near-black label
+  textMuted: '#8E8E93', // iOS secondary label
+  textDim: '#C7C7CC', // iOS tertiary separator/placeholder
 
   white: '#FFFFFF',
   black: '#000000',
@@ -52,30 +57,30 @@ export const radius = {
 export const shadows = {
   glowPrimary: {
     shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.45,
-    shadowRadius: 18,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.28,
+    shadowRadius: 16,
+    elevation: 5,
   },
   glowDanger: {
     shadowColor: colors.danger,
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.24,
     shadowRadius: 14,
-    elevation: 6,
+    elevation: 4,
   },
   glowAccent: {
     shadowColor: colors.accent,
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.22,
     shadowRadius: 14,
-    elevation: 6,
+    elevation: 4,
   },
   card: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.35,
-    shadowRadius: 16,
-    elevation: 5,
+    shadowColor: '#1A2035',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.07,
+    shadowRadius: 18,
+    elevation: 3,
   },
 } as const;

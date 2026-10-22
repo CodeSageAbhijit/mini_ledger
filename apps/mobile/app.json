@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "resizeMode": "contain",
-      "backgroundColor": "#0B0F1A"
+      "backgroundColor": "#F6F8FA"
     },
     "ios": {
       "supportsTablet": false,
@@ -17,7 +17,7 @@
     "android": {
       "package": "com.miniledger.app",
       "adaptiveIcon": {
-        "backgroundColor": "#0B0F1A"
+        "backgroundColor": "#F6F8FA"
       },
       "permissions": [
         "CAMERA",

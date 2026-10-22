@@ -12,7 +12,7 @@ import { authApi } from '../../api/authApi';
 import { Button } from '../../components/ui/Button';
 import { OtpInput } from '../../components/ui/OtpInput';
 import { useAuthStore } from '../../store/authStore';
-import { colors, radius, spacing } from '../../theme/tokens';
+import { colors, radius, shadows, spacing } from '../../theme/tokens';
 import { textStyles } from '../../theme/typography';
 import { extractErrorMessage } from '../../utils/errors';
 
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     borderWidth: 1,
     borderColor: colors.surfaceBorder,
+    ...shadows.card,
   },
   title: {
     ...textStyles.h2,

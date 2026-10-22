@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surface,
     borderRadius: radius.md,
     borderWidth: 1.5,
-    borderColor: colors.surfaceBorder,
+    borderColor: 'rgba(0, 0, 0, 0.08)',
     minHeight: 52,
     paddingHorizontal: spacing.base,
   },

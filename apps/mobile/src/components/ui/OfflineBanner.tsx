@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   text: {
     ...textStyles.caption,
-    color: colors.bg,
+    color: colors.white,
     fontWeight: '700',
   },
 });

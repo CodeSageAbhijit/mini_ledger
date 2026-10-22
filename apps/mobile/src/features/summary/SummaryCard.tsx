@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
   },
   countsBadge: {
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
     borderRadius: radius.full,
   },
   countsText: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   barTrack: {
     height: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(0, 0, 0, 0.06)',
     borderRadius: radius.full,
     flexDirection: 'row',
     overflow: 'hidden',

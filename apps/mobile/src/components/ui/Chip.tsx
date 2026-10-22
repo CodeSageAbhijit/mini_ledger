@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.base,
     paddingVertical: spacing.sm,
     borderRadius: radius.full,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.surfaceBorder,
     marginRight: spacing.sm,
   },
   chipSelected: {
     backgroundColor: colors.primary,
-    borderColor: colors.primaryLight,
+    borderColor: colors.primary,
   },
   label: {
     ...textStyles.caption,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   labelSelected: {
-    color: colors.text,
+    color: colors.white,
     fontWeight: '700',
   },
   badge: {
@@ -106,10 +106,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: radius.full,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
   },
   badgeSelected: {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    backgroundColor: 'rgba(255, 255, 255, 0.28)',
   },
   badgeText: {
     ...textStyles.small,
@@ -117,6 +117,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   badgeTextSelected: {
-    color: colors.text,
+    color: colors.white,
   },
 });

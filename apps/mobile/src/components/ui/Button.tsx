@@ -63,20 +63,20 @@ export const Button: React.FC<ButtonProps> = ({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: radius.md,
+      borderRadius: radius.full,
       minHeight: size === 'sm' ? 40 : size === 'lg' ? 56 : 48,
       paddingHorizontal: size === 'sm' ? spacing.md : spacing.xl,
     };
 
     if (disabled) {
-      return { ...base, backgroundColor: colors.surfaceElevated, opacity: 0.6 };
+      return { ...base, backgroundColor: 'rgba(0, 0, 0, 0.06)', opacity: 0.6 };
     }
 
     switch (variant) {
       case 'secondary':
         return {
           ...base,
-          backgroundColor: colors.surfaceElevated,
+          backgroundColor: colors.surface,
           borderWidth: 1,
           borderColor: colors.surfaceBorder,
         };
@@ -114,15 +114,18 @@ export const Button: React.FC<ButtonProps> = ({
     };
 
     if (variant === 'accent') {
-      return { ...base, color: colors.bg };
+      return { ...base, color: colors.white };
+    }
+    if (variant === 'danger') {
+      return { ...base, color: colors.white };
     }
     if (variant === 'secondary') {
       return { ...base, color: colors.text };
     }
     if (variant === 'ghost') {
-      return { ...base, color: colors.primaryLight };
+      return { ...base, color: colors.primary };
     }
-    return { ...base, color: colors.text };
+    return { ...base, color: colors.white };
   };
 
   return (
@@ -134,7 +137,7 @@ export const Button: React.FC<ButtonProps> = ({
       style={[getContainerStyle(), animatedStyle, style]}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'accent' ? colors.bg : colors.text} />
+        <ActivityIndicator color={variant === 'ghost' || variant === 'secondary' ? colors.primary : colors.white} />
       ) : (
         <>
           {icon ? <Animated.View style={{ marginRight: spacing.sm }}>{icon}</Animated.View> : null}

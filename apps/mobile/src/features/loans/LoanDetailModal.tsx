@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { LoanResponse } from '@miniledger/shared';
 import { Button } from '../../components/ui/Button';
-import { colors, radius, spacing } from '../../theme/tokens';
+import { colors, radius, shadows, spacing } from '../../theme/tokens';
 import { textStyles } from '../../theme/typography';
 import { formatPaiseToInr } from '../../utils/money';
 import { formatLoanDate } from '../../utils/dates';
@@ -31,9 +31,9 @@ export const LoanDetailModal: React.FC<LoanDetailModalProps> = ({
   onRepay,
   isRepaying = false,
 }) => {
-  if (!loan) return null;
-
   const accessToken = useAuthStore((s) => s.accessToken);
+
+  if (!loan) return null;
   const isRepaid = loan.status === 'REPAID';
   const receipt = loan.receipts?.[0];
   const receiptUrl = receipt && accessToken
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     padding: spacing.base,
   },
   backdrop: {
@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     borderWidth: 1,
     borderColor: colors.surfaceBorder,
+    ...shadows.card,
   },
   headerRow: {
     flexDirection: 'row',
@@ -212,10 +213,12 @@ const styles = StyleSheet.create({
     color: colors.danger,
   },
   detailBox: {
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: 'rgba(0, 0, 0, 0.03)',
     borderRadius: radius.md,
     padding: spacing.base,
     marginVertical: spacing.base,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.05)',
   },
   detailRow: {
     flexDirection: 'row',
@@ -252,13 +255,13 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
   },
   badgePending: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
   },
   badgeOverdue: {
-    backgroundColor: 'rgba(255, 92, 122, 0.2)',
+    backgroundColor: 'rgba(255, 59, 48, 0.10)',
   },
   badgeRepaid: {
-    backgroundColor: 'rgba(46, 230, 166, 0.2)',
+    backgroundColor: 'rgba(52, 199, 89, 0.12)',
   },
   badgeText: {
     ...textStyles.small,

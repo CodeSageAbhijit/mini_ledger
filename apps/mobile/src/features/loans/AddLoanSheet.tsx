@@ -14,7 +14,7 @@ import { createLoanSchema } from '@miniledger/shared';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Chip } from '../../components/ui/Chip';
-import { colors, radius, spacing } from '../../theme/tokens';
+import { colors, radius, shadows, spacing } from '../../theme/tokens';
 import { textStyles } from '../../theme/typography';
 import { getOffsetIsoDate } from '../../utils/dates';
 import { rupeesToPaise, formatLiveRupeeInput } from '../../utils/money';
@@ -56,7 +56,7 @@ export const AddLoanSheet: React.FC<AddLoanSheetProps> = ({
   const handlePickImage = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ['images'],
       allowsEditing: true,
       quality: 0.8,
     });
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
   },
   backdrop: {
     ...StyleSheet.absoluteFill,
@@ -240,11 +240,12 @@ const styles = StyleSheet.create({
     maxHeight: '90%',
     borderWidth: 1,
     borderColor: colors.surfaceBorder,
+    ...shadows.card,
   },
   dragHandle: {
     width: 36,
-    height: 4,
-    backgroundColor: colors.surfaceBorder,
+    height: 5,
+    backgroundColor: '#D1D1D6',
     borderRadius: radius.full,
     alignSelf: 'center',
     marginBottom: spacing.base,
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
   },
   rupeeSymbol: {
     ...textStyles.h2,
-    color: colors.primaryLight,
+    color: colors.primary,
     fontWeight: '700',
     marginRight: 4,
   },
