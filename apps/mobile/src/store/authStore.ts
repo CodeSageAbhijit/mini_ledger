@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 
 export interface UserProfile {
@@ -82,6 +83,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY),
       SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY),
       SecureStore.deleteItemAsync(USER_PROFILE_KEY),
+      AsyncStorage.removeItem('MINILEDGER_QUERY_CACHE'),
     ]);
 
     set({

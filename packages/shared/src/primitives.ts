@@ -21,14 +21,25 @@ export function normalizeToE164(raw: string): string {
   if (/^91\d{10}$/.test(cleaned)) {
     return '+' + cleaned;
   }
-  return '+' + cleaned;
+  // Default to +91 for numbers entered without country code
+  return '+91' + cleaned;
 }
 
 export const e164PhoneSchema = z
   .string()
   .trim()
   .transform(normalizeToE164)
-  .refine((v) => /^\+[1-9]\d{7,14}$/.test(v), 'Enter a valid phone number');
+  .refine(
+    (v) => {
+      if (v.startsWith('+91')) {
+        // Indian numbers must be exactly +91 followed by 10 digits
+        return /^\+91\d{10}$/.test(v);
+      }
+      // Other international numbers must be valid E.164 (8 to 15 digits)
+      return /^\+[1-9]\d{7,14}$/.test(v);
+    },
+    { message: 'Please enter a valid 10-digit mobile number' },
+  );
 
 // Monetary amounts in integer paise (₹1 = 100 paise), max ₹10,00,000 (100,000,000 paise)
 export const paiseSchema = z

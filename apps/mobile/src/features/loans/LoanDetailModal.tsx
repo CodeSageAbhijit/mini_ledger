@@ -14,6 +14,7 @@ import { textStyles } from '../../theme/typography';
 import { formatPaiseToInr } from '../../utils/money';
 import { formatLoanDate } from '../../utils/dates';
 import { BASE_API_URL } from '../../api/HttpClient';
+import { useAuthStore } from '../../store/authStore';
 
 interface LoanDetailModalProps {
   loan: LoanResponse | null;
@@ -32,9 +33,12 @@ export const LoanDetailModal: React.FC<LoanDetailModalProps> = ({
 }) => {
   if (!loan) return null;
 
+  const accessToken = useAuthStore((s) => s.accessToken);
   const isRepaid = loan.status === 'REPAID';
   const receipt = loan.receipts?.[0];
-  const receiptUrl = receipt ? `${BASE_API_URL}/receipts/${receipt.id}/file` : null;
+  const receiptUrl = receipt && accessToken
+    ? `${BASE_API_URL}/receipts/${receipt.id}/file?token=${accessToken}`
+    : null;
 
   return (
     <Modal
@@ -133,8 +137,14 @@ export const LoanDetailModal: React.FC<LoanDetailModalProps> = ({
           {/* Receipt Preview */}
           {receiptUrl ? (
             <View style={styles.receiptSection}>
-              <Text style={styles.detailLabel}>Attached Receipt</Text>
-              <Image source={{ uri: receiptUrl }} style={styles.receiptImage} />
+              <Image
+                source={{
+                  uri: receiptUrl,
+                  headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined,
+                }}
+                style={styles.receiptImage}
+                resizeMode="cover"
+              />
             </View>
           ) : null}
 

@@ -73,6 +73,9 @@ export class PrismaLoanRepository implements LoanRepository {
       skip: cursor ? 1 : 0,
       cursor: cursor ? { id: cursor } : undefined,
       include: {
+        receipts: {
+          orderBy: { createdAt: 'desc' },
+        },
         _count: { select: { receipts: true } },
       },
       orderBy: [

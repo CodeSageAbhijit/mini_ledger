@@ -21,14 +21,17 @@ export interface AccessTokenVerifier {
 
 export function createAuthGuard(tokenVerifier: AccessTokenVerifier) {
   return (req: Request, _res: Response, next: NextFunction): void => {
+    let token: string | undefined;
+
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new UnauthorizedError('Missing or malformed Authorization header');
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7).trim();
+    } else if (typeof req.query.token === 'string' && req.query.token.trim()) {
+      token = req.query.token.trim();
     }
 
-    const token = authHeader.substring(7).trim();
     if (!token) {
-      throw new UnauthorizedError('Access token is empty');
+      throw new UnauthorizedError('Missing or malformed Authorization header');
     }
 
     try {
