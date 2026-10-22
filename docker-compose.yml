@@ -17,5 +17,24 @@ services:
       timeout: 5s
       retries: 5
 
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: miniledger-api
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_URL: postgresql://miniledger:miniledger@db:5432/miniledger?schema=public
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/apps/api/uploads
+
 volumes:
   pgdata:
+  uploads_data:

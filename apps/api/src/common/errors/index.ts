@@ -14,8 +14,8 @@ export class AppError extends Error {
 }
 
 export class NotFoundError extends AppError {
-  constructor(message = 'Resource not found', details?: unknown) {
-    super('NOT_FOUND', 404, message, details);
+  constructor(message = 'Resource not found', code = 'NOT_FOUND', details?: unknown) {
+    super(code, 404, message, details);
   }
 }
 
@@ -26,8 +26,8 @@ export class ValidationError extends AppError {
 }
 
 export class UnauthorizedError extends AppError {
-  constructor(message = 'Unauthorized', details?: unknown) {
-    super('UNAUTHORIZED', 401, message, details);
+  constructor(message = 'Unauthorized', code = 'UNAUTHORIZED', details?: unknown) {
+    super(code, 401, message, details);
   }
 }
 

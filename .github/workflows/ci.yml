@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Lint, Typecheck & Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: miniledger
+          POSTGRES_PASSWORD: miniledger
+          POSTGRES_DB: miniledger
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U miniledger -d miniledger"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      PORT: 4000
+      DATABASE_URL: postgresql://miniledger:miniledger@localhost:5432/miniledger?schema=public
+      APP_TIMEZONE: Asia/Kolkata
+      JWT_ACCESS_SECRET: miniledger_super_secret_jwt_access_key_min_32_characters
+      JWT_ACCESS_TTL: 15m
+      REFRESH_TTL_DAYS: 30
+      OTP_HASH_SECRET: miniledger_super_secret_otp_hash_key_min_32_characters
+      OTP_TTL_SECONDS: 300
+      OTP_MAX_ATTEMPTS: 5
+      OTP_RESEND_COOLDOWN_SECONDS: 30
+      OTP_CHANNEL: console
+      OTP_FALLBACK_TO_CONSOLE: true
+      STORAGE_DRIVER: local
+      UPLOAD_DIR: ./uploads
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared package
+        run: npm run build:shared
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Typecheck
+        run: npm run typecheck
+
+      - name: Deploy Prisma migrations
+        run: npx --workspace=@miniledger/api prisma migrate deploy
+
+      - name: Run Tests with Coverage
+        run: npm run --workspace=@miniledger/api test:coverage
