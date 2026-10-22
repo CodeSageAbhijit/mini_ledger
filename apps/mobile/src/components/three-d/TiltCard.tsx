@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   specular: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(255, 255, 255, 0.08)',
     borderRadius: radius.card,
   },

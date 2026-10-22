@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     padding: spacing.base,
   },
   celebrationLayer: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     zIndex: 10,
     alignItems: 'center',
     justifyContent: 'center',

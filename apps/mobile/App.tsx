@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <Providers>
-      <StatusBar style="light" backgroundColor={colors.bg} />
+      <StatusBar style="light" />
       <RootNavigator />
     </Providers>
   );

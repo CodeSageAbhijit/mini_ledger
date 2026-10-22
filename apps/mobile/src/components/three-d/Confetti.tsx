@@ -21,7 +21,7 @@ export const Confetti: React.FC<ConfettiProps> = ({ count = 28 }) => {
   if (reducedMotion) return null;
 
   return (
-    <View style={StyleSheet.absoluteFillObject} pointerEvents="none">
+    <View style={StyleSheet.absoluteFill} pointerEvents="none">
       {Array.from({ length: count }).map((_, i) => (
         <Particle key={i} index={i} />
       ))}

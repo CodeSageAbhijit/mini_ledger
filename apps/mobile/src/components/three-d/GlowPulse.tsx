@@ -60,7 +60,7 @@ export const GlowPulse: React.FC<GlowPulseProps> = ({
 
 const styles = StyleSheet.create({
   glow: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     borderWidth: 2,
     borderRadius: 24,
     shadowOffset: { width: 0, height: 0 },
