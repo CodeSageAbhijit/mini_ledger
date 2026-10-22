@@ -23,3 +23,11 @@ This document records architectural, design, and technical decisions made during
 ### ADR-005: Refresh Token Hashing & Rotation
 - **Decision:** Store refresh tokens as SHA-256 hashes in the database. Rotate refresh tokens upon every refresh request.
 - **Rationale:** Protects against token theft if the database is compromised. Rotation limits the attack window of intercepted tokens.
+
+### ADR-006: Prebuild Native Android Project
+- **Decision:** Use Expo prebuild (`npx expo prebuild --platform android`) to generate a complete, standalone native Android Gradle project.
+- **Rationale:** Satisfies the requirement for a native Android project with custom fonts, native animations, Skia, Reanimated, and cleartext traffic for local development, allowing compiling the APK in Android Studio or with Gradle.
+
+### ADR-007: WhatsApp Cloud API Credentials
+- **Decision:** Configure live Meta WhatsApp Cloud API credentials in `.env` with fallback enabled for resilience.
+- **Rationale:** Delivers live OTP authentication messages to verified test phone numbers using Meta's Cloud API authentication template.

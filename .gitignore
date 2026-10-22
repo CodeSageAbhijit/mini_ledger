@@ -34,6 +34,8 @@ uploads/
 *.swo
 .DS_Store
 
-# Android / iOS
-apps/mobile/android/
+# Android / iOS build artifacts
+apps/mobile/android/.gradle/
+apps/mobile/android/build/
+apps/mobile/android/app/build/
 apps/mobile/ios/

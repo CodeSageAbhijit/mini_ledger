@@ -20,7 +20,11 @@ export const listLoansQuerySchema = z.object({
 
 export type CreateLoanInput = z.infer<typeof createLoanSchema>;
 export type LoanIdParam = z.infer<typeof loanIdParamSchema>;
-export type ListLoansQuery = z.infer<typeof listLoansQuerySchema>;
+export type ListLoansQuery = {
+  filter?: 'all' | 'pending' | 'overdue' | 'repaid';
+  cursor?: string;
+  limit?: number;
+};
 
 export interface ReceiptInfo {
   id: string;

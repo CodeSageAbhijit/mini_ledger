@@ -63,9 +63,9 @@ export class LoansService {
 
     const loans = await this.loanRepo.findMany(
       userId,
-      query.filter,
+      query.filter || 'all',
       todayDate,
-      query.limit,
+      query.limit || 50,
       query.cursor,
     );
 
