@@ -20,7 +20,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: backend/Dockerfile
     container_name: miniledger-api
     restart: unless-stopped
     ports:
@@ -33,7 +33,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - uploads_data:/app/apps/api/uploads
+      - uploads_data:/app/backend/uploads
 
 volumes:
   pgdata:

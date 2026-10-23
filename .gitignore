@@ -12,6 +12,8 @@ build/
 .expo/
 *.apk
 *.aab
+*.keystore
+*.jks
 
 # Environment & Secrets
 .env
@@ -35,7 +37,7 @@ uploads/
 .DS_Store
 
 # Android / iOS build artifacts
-apps/mobile/android/.gradle/
-apps/mobile/android/build/
-apps/mobile/android/app/build/
-apps/mobile/ios/
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/ios/

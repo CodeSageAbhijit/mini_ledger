@@ -5,7 +5,7 @@ This document records architectural, design, and technical decisions made during
 ---
 
 ### ADR-001: Monorepo with npm Workspaces
-- **Decision:** Use native npm workspaces with `packages/shared`, `apps/api`, and `apps/mobile`.
+- **Decision:** Use native npm workspaces with `packages/shared`, `backend`, and `frontend`.
 - **Rationale:** Keeps Zod schemas strictly shared between backend and mobile without duplicating types or drift. Shared package builds to TypeScript definitions and plain JavaScript for frictionless Metro & Node consumption.
 
 ### ADR-002: Money Stored as Integer Paise

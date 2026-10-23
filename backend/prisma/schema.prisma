@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LoanStatus {
+  PENDING
+  REPAID
+}
+
+enum OtpChannelType {
+  WHATSAPP
+  SMS
+  CONSOLE
+}
+
+model User {
+  id            String         @id @default(uuid())
+  phone         String         @unique // E.164, e.g. +919876543210
+  name          String?
+  username      String?        @unique
+  email         String?        @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  loans         Loan[]
+  refreshTokens RefreshToken[]
+}
+
+model OtpChallenge {
+  id         String         @id @default(uuid())
+  phone      String
+  codeHash   String // HMAC-SHA256(code, OTP_HASH_SECRET); never store plain OTP
+  channel    OtpChannelType
+  attempts   Int            @default(0)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime       @default(now())
+
+  @@index([phone, createdAt])
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String
+  tokenHash String    @unique // SHA-256 of the opaque token
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Loan {
+  id          String     @id @default(uuid())
+  userId      String
+  friendName  String
+  amountPaise Int // integer paise, > 0
+  currency    String     @default("INR")
+  note        String?
+  dueDate     DateTime   @db.Date // date only, no time
+  status      LoanStatus @default(PENDING)
+  repaidAt    DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  receipts    Receipt[]
+
+  @@index([userId, status, dueDate])
+}
+
+model Receipt {
+  id         String   @id @default(uuid())
+  loanId     String
+  storageKey String // key inside FileStorage
+  mimeType   String
+  sizeBytes  Int
+  createdAt  DateTime @default(now())
+  loan       Loan     @relation(fields: [loanId], references: [id], onDelete: Cascade)
+
+  @@index([loanId])
+}

@@ -90,7 +90,7 @@ The API will be available at `http://localhost:4000/api/v1` and health check at 
 
 ## 5. Mobile App & Building Android APK
 
-MiniLedger's native Android project is generated via **Expo Prebuild** under `apps/mobile/android`.
+MiniLedger's native Android project is generated via **Expo Prebuild** under `frontend/android`.
 
 ### Run Mobile in Development
 ```bash
@@ -102,7 +102,7 @@ npm run dev:mobile
 To compile an Android APK directly using Gradle:
 
 ```bash
-cd apps/mobile/android
+cd frontend/android
 
 # Build Debug APK
 ./gradlew assembleDebug
@@ -112,11 +112,11 @@ cd apps/mobile/android
 ```
 
 The compiled APK will be generated at:
-`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` or `release/app-release.apk`.
+`frontend/android/app/build/outputs/apk/debug/app-debug.apk` or `release/app-release.apk`.
 
 > **Note on Emulator vs Physical Device:**
 > - In the Android Emulator, the backend is reached at `http://10.0.2.2:4000/api/v1`.
-> - On a physical Android device, set `EXPO_PUBLIC_API_URL=http://<YOUR_LAN_IP>:4000/api/v1` in `apps/mobile/.env`.
+> - On a physical Android device, set `EXPO_PUBLIC_API_URL=http://<YOUR_LAN_IP>:4000/api/v1` in `frontend/.env`.
 
 ---
 
@@ -162,16 +162,16 @@ Coverage goal: **≥ 80% coverage on all services** (achieved ~90% across servic
 
 1. **Java Version:** Ensure Java 17 is active: `java -version`.
 2. **Android SDK Location:** Set `export ANDROID_HOME=$HOME/Library/Android/sdk` in your shell configuration.
-3. **Clean Gradle Cache:** If native builds fail, run `cd apps/mobile/android && ./gradlew clean`.
+3. **Clean Gradle Cache:** If native builds fail, run `cd frontend/android && ./gradlew clean`.
 4. **Metro Cache Reset:** Clear Metro bundler cache with `npx expo start -c`.
 5. **Port Forwarding for USB Debugging:** Run `adb reverse tcp:4000 tcp:4000` to connect a USB-attached phone to localhost.
-6. **Cleartext HTTP:** Android restricts cleartext HTTP by default. `usesCleartextTraffic: true` is enabled in `apps/mobile/app.json` for local development.
+6. **Cleartext HTTP:** Android restricts cleartext HTTP by default. Configure `usesCleartextTraffic: true` in the root `app.json` for local development.
 
 ---
 
 ## 10. Production Deployment Architecture
 
-- **Compute:** Multi-stage `apps/api/Dockerfile` run on AWS ECS (Fargate) or EC2 behind an Application Load Balancer with TLS termination.
+- **Compute:** Multi-stage `backend/Dockerfile` run on AWS ECS (Fargate) or EC2 behind an Application Load Balancer with TLS termination.
 - **Database:** Amazon RDS PostgreSQL 16 Multi-AZ with automated daily snapshots and KMS encryption.
 - **Storage:** Amazon S3 with CloudFront CDN for receipt attachments (`STORAGE_DRIVER=s3`).
 - **Secrets:** AWS Secrets Manager or Parameter Store for JWT and WhatsApp credentials.
